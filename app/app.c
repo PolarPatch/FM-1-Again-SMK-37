@@ -961,7 +961,9 @@ void app_ui_init(void)
     sv_init();                               /* the screensaver's film, if the resources hold it */
     sv.touch = plat_ms();
     boot_start(plat_ms());                   /* the boot screen: FM-1 AGAIN in the storm (boot.h) */
-    net_apply();                             /* WI-FI and LINK as kept */
+#if !PLAT_SMK37
+    net_apply();                             /* WI-FI and LINK as kept (the SMK-37: in app_frame, 3 s on) */
+#endif
     ui.redraw = ui.redraw_row = ui.redraw_title = 1;
 }
 
@@ -971,6 +973,22 @@ void app_frame(void)
     uint32_t i, now = plat_ms(), lit = 0;
     input();
     sy_check();
+#if PLAT_SMK37
+    {   /* the SMK-37: the radio (Bluetooth, then WI-FI and LINK) 3 s after the start, not in the boot (Arctic Scream
+         * SMK-37's lesson, 2026-11-27); not after a Bluetooth run that crashed (radio.c), as main_fm1.c's boot */
+        static uint8_t radio_go;
+        if (!radio_go && now >= 3000u) {
+            radio_go = 1;
+#ifdef PLAT_HOST
+            if (!set.ble_off)
+#else
+            if (!radio_last_bad && !set.ble_off)
+#endif
+                plat_ble_start();
+            net_apply();
+        }
+    }
+#endif
     lk_frame();                                  /* Ableton Link: the session's tempo, beat and start (net.h) */
     nm_frame();                                  /* MIDI over Wi-Fi (net.h) */
     speak();

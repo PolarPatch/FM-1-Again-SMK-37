@@ -11,7 +11,11 @@
 #define APP_BLOCK 256u                   /* frames per audio block: 5.8 ms at 44.1 kHz */
 #define APP_TOUCH                        /* velocity and pressure from the keys (lib/touch.h) */
 #define APP_BTDEV                        /* Bluetooth MIDI devices (lib/btdev.h) */
+#if defined PLAT_SMK37 && PLAT_SMK37
+#define APP_BLE_AT_BOOT 0                /* the SMK-37: the radio from app_frame, 3 s after the start (app.c) */
+#else
 #define APP_BLE_AT_BOOT (!again_ble_off())   /* Bluetooth at power-on: as the player left it (REC held) */
+#endif
 int again_ble_off(void);
 
 /* the store: the app's objects, the panel calibration (the platform's) and Bluetooth's address and pairing among
