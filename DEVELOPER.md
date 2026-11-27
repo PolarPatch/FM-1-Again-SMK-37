@@ -21,7 +21,12 @@
   - `app.c` CH_FILE: CHOP's sample at the data area's foot, 0xC2000 .. 0xD8FFF (92 KiB, as the FM-1's XDATA1).
   - `saver.h`: no film (no resource region on the SMK-37: the build refuses `resources` there), `fm1.toml`
     `resources` commented out; `tests/saver.txt` fails here for that reason.
-  - `fm1.toml` board = "smk37", model = "pro".
+  - `fm1.toml` board = "smk37", model = "pro"; title, repo, install and description name the SMK-37 and this
+    repo (keep them when app/ is synced again from FM-1 Again).
+- Releases: one version line with FM-1 Again (1.0.7 here = 1.0.7 there). Push the tag; `.github/workflows/release.yml`
+  (zvenson/fm1-build@v1, attested) builds the Pro and MKE packages; then `gh release edit vX --notes-file
+  docs/releases/vX.md`. The Elite's identity ("SMK-37 Elite_" + 9 digits) is over 20 characters: it needs a
+  one-digit id_prefix, so it waits.
 - The SMK's flash, never written by this app: 0x0..0x3FFF, 0xC0000..0xC1FFF (calibration), 0xF4000..0xFDFFF,
   0xFF000 on; PLAT_OWNER 0xAF000 is refused by the platform.
 - The boot raises VDC14 / SYSVDD and runs fm1_power_stock / fm1_clock_stock (main_fm1.c, both boards): the

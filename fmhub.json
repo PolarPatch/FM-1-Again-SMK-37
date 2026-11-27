@@ -1,0 +1,13 @@
+{
+  "what": "NEW! Plays via Wi-Fi to Ableton Note! FM-1 Again on the M-VAVE SMK-37: warm, rhythmic electronic music. Eight garage and house grooves with chords pumping under the kick; electric piano, sung syllables or your own chopped sample on the keys; stutters and tape stops; builds and drops. Ableton Link and MIDI over Wi-Fi or Bluetooth. An early version: the FM-1's controls on the SMK-37, the pads, faders and wheels to come.",
+  "author": "PolarPatch",
+  "kinds": [
+    "groove"
+  ],
+  "play": "https://polarpatch.github.io/FM-1-Again/",
+  "editor": "https://polarpatch.github.io/FM-1-Again/editor/",
+  "cheat": "https://polarpatch.github.io/FM-1-Again/cheatsheet.html",
+  "image": "docs/card.png",
+  "color": "#FFFFFF",
+  "sounds": "own: CHOP's factory phrase is the firmware's own VOX voice, recorded in its simulator; everything else is synthesised"
+}

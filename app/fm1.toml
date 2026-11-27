@@ -6,7 +6,7 @@ id_prefix = "FM-1_242"         # package identity: dev FM-1_24200, releases FM-1
                                 # in the hub's catalogue, 2026-11-25. 1.0 .. 1.0.2 were FM-1_13370XXYYZZ: too long for the hub)
 usb_manufacturer = "PolarPatch"
 usb_product = "FM-1 Again"
-title = "FM-1 Again"             # the name in firmware.json (else the manufacturer, PolarPatch)
+title = "FM-1 Again SMK-37"             # the name in firmware.json (else the manufacturer, PolarPatch)
 o2 = []                        # separate units compiled at -O2 (the DSP)
 words = "words.tsv"
 ble = true                     # Bluetooth MIDI (--no-ble builds without it)
@@ -24,13 +24,13 @@ backup = true                  # the settings backed up and restored over USB (a
 # resources_what = "the screensaver's film"
 # the site (base/tools/make_site.py, base/tools/publish_site.sh)
 tagline = "warm, chopped, pumping: the FM-1 made again"
-repo = "https://github.com/PolarPatch/FM-1-Again"     # not created yet: ask before making it
+repo = "https://github.com/PolarPatch/FM-1-Again-SMK-37"
 licence = "GPL-3.0-only"       # (link = true: GPL-3.0-only as a whole; my own files stay GPL-3.0-or-later)
 credits = "Built on fm1-base (Charles Vestal) and felucca-bsp, from Felucca by Leo Kuroshita (Hügelton Instruments); modules from Arctic Scream p0larpatch."
 # firmware.json, for firmware hubs (base/docs/FIRMWARE-JSON.md)
 author = "PolarPatch"
-description = "Warm, emotional, rhythmic electronic music made again on the FM-1: chopped and pitched voices and everyday sounds, soft piano chords, a sidechain pump, garage and house grooves, build-ups and drops."
+description = "Warm, emotional, rhythmic electronic music made again on the SMK-37: chopped and pitched voices and everyday sounds, soft piano chords, a sidechain pump, garage and house grooves, build-ups and drops."
 tags = ["groovebox", "sampler", "chords"]
-install = "https://polarpatch.github.io/FM-1-Again/install/"
+install = "https://github.com/PolarPatch/FM-1-Again-SMK-37/releases/latest"
 site = "https://polarpatch.github.io/FM-1-Again/"
 screenshot = "app/docs/img/screen-playing.png"
