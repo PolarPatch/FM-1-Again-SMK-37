@@ -31,7 +31,8 @@
   (`sudo -n /usr/local/smk37-backup/smk37-read backup`).
 - On the user's SMK-37 Pro, 2026-11-27 (installed over USB-MIDI, port "Felucca"; the full backup of 10:18 that day
   kept): it starts and plays; the notes reach Ableton Note on an iPhone over Bluetooth MIDI and over Wi-Fi alone
-  (NETMIDI ON, Wi-Fi AP, Note's Network Session 1, Bluetooth off in Note). NETMIDI is off by default: turn it on.
+  (NETMIDI ON, Wi-Fi AP, Note's Network Session 1, Bluetooth off in Note). NETMIDI is off by default: turn it on. Link's tempo both ways with Note; WI-FI, LINK and NETMIDI kept over a
+  power cycle once SAVE (BT) is pressed.
 - Two devices on one Mac: fm1_install.py's --port is a substring ("Felucca" matches "Felucca Update") and it waits for
   any loader, so install one device at a time.
 - Next: the pads (PERFORM's tricks, CHOP's slices), faders (KEYS / VOICE / DRUMS / SPACE), wheels (pitch, FILTER),

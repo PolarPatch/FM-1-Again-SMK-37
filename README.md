@@ -16,6 +16,25 @@ wheels. Grooves, chords pumping under the kick, chopped voices, builds and drops
 > has no room for the FM-1's resource region). Until the release: [FM-1 Again for the FM-1](https://github.com/PolarPatch/FM-1-Again)
 > and [play it in your browser](https://polarpatch.github.io/FM-1-Again/).
 
+## The FM-1's buttons on the SMK-37
+
+FM-1 Again's [manual](app/docs/MANUAL.md) names the FM-1's buttons. On the SMK-37 they are:
+
+| FM-1 | SMK-37 |
+|---|---|
+| SEL | SCALE |
+| ENV | CHORD |
+| LFO | NOTE REPEAT |
+| EDIT | PARA |
+| GLO | GLOBE |
+| HOME | PATCH |
+| SAVE | BT |
+| PLAY | SEQ PLAY |
+| REC | SEQ REC |
+
+FX, ARP, SEQ and OCTAVE -/+ are the same. The knobs: K1..K4 as on the FM-1, K6 SELECT, K7 ALGORITHM, K8 PRESETS,
+K5 the volume (MASTER). Settings are kept when you press SAVE (BT): Wi-Fi, Link and NETMIDI too.
+
 FM-1 Again is GPL-3.0-only as a whole ([LICENSE](LICENSE), [LICENSING.md](LICENSING.md)): its Ableton Link part is
 GPL-3.0-only. Ableton Link is a trademark of Ableton AG; FM-1 Again is not made, endorsed or affiliated with Ableton.
 Unofficial firmware, not made or endorsed by M-VAVE, and not made, endorsed or approved by any artist.
