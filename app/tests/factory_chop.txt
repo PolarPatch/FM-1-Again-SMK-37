@@ -1,0 +1,42 @@
+# CHOP's factory sample: a phrase sung by VOX in a warm room, recorded from the host simulator (all of it this
+# firmware's own sound). base/tools/build.py app --host, then
+#   app/build/host/again_host app/tests/factory_chop.txt app/build/factory
+#   /usr/bin/python3 app/tools/again_chop.py app/build/factory/phrase.wav --name "AGAIN VOX" --header app/gen/again_chop.h
+wait 600
+turn ALGO 1
+tap ENV
+turn K2 12
+tap FX
+turn K3 20
+turn K1 6
+wait 100
+wav phrase.wav
+key 16 down 110
+wait 380
+key 16 up
+wait 60
+key 19 down 90
+wait 300
+key 19 up
+wait 80
+key 23 down 120
+wait 520
+key 23 up
+wait 100
+key 21 down 100
+wait 260
+key 21 up
+wait 40
+key 19 down 95
+wait 300
+key 19 up
+wait 120
+key 14 down 110
+wait 420
+key 14 up
+wait 80
+key 16 down 100
+wait 600
+key 16 up
+wait 1400
+wavstop

@@ -1,0 +1,47 @@
+# FM-1 Again's screens for the README and the hub (app/tools/make_shots.py): base/tools/build.py app --host, then
+#   app/build/host/again_host app/docs/shots.txt app/build/shots
+wait 3000
+shot boot.png
+wait 3000
+shot ready.png
+tap PLAY
+wait 7800
+shot playing.png
+tap ARP
+wait 2300
+shot build.png
+wait 7450
+shot drop.png
+key 1 down 100
+wait 300
+shot pad.png
+key 1 up
+wait 200
+tap EDIT
+wait 400
+shot keys.png
+turn ALGO 2
+tap ENV
+tap ENV
+wait 100
+key 3 down 110
+wait 300
+key 3 up
+turn PRESET 1
+wait 1600
+shot chop.png
+tap FX
+wait 400
+shot space.png
+tap GLO
+tap GLO
+wait 400
+shot tape.png
+tap SEQ
+tap SEQ
+tap SEQ
+wait 400
+shot buildpage.png
+tap HOME
+wait 1500
+shot home2.png

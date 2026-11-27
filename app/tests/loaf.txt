@@ -1,0 +1,69 @@
+# The ideas from loaf-breaker: the pads on the black keys, the strip, the tabs, the tips, SONG, the builds' styles,
+# TEMPO UP, VARY. base/tools/build.py app --host, then
+#   app/build/host/again_host app/tests/loaf.txt app/build/loaf
+master 4096
+wait 900
+shot 0-tip.png
+tap PLAY
+wait 3000
+shot 1-home-ticks.png
+# a pad: G#3 (black key 1: ROLL 1/16)
+key 3 down
+wait 30
+expect note -1
+wait 600
+shot 2-pad-held.png
+key 3 up
+wait 300
+# the BUILD page (SEQ three times): KICK ROLL, TEMPO UP +12
+tap SEQ
+tap SEQ
+tap SEQ
+wait 30
+expect page 3
+turn PRESET 1
+turn K3 12
+wait 50
+shot 3-build-page.png
+tap HOME
+tap ARP
+wait 6000
+shot 4-kickroll-tempo.png
+wait 4000
+expect drops 1
+# STUTTER style
+tap SEQ
+tap SEQ
+tap SEQ
+turn PRESET 1
+tap HOME
+tap ARP
+wait 9000
+shot 5-stutter.png
+wait 1500
+expect drops 2
+tap PLAY
+# SONG: PLAY runs the sections
+tap SEQ
+tap SEQ
+tap SEQ
+turn K4 1
+wait 30
+tap HOME
+wav song.wav
+tap PLAY
+wait 5000
+shot 6-song-intro.png
+wait 26000
+shot 7-song-build.png
+wait 4000
+wavstop
+tap PLAY
+tap GLO
+wait 30
+shot 8-setup-tabs.png
+tap GLO
+tap GLO
+wait 30
+expect page 12
+shot 9-mix.png

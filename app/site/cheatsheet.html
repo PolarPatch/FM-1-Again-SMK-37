@@ -1,0 +1,148 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later
+     Copyright (C) 2026 PolarPatch
+     FM-1 Again's cheat sheet: every page, button and trick on one sheet (A4 landscape when printed). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FM-1 Again cheat sheet</title>
+<link rel="icon" href="polarpatch-logo.png">
+<meta name="description" content="FM-1 Again's cheat sheet: every page, button and trick of the FM-1 firmware on one sheet.">
+<link rel="stylesheet" href="site.css">
+<style>
+.sheet { padding: 28px 0 40px; }
+.sheet h1 { margin: 0 0 6px; font-size: clamp(44px, 8vw, 96px); }
+.sheet .sub { color: var(--dim); margin: 0 0 24px; font: 600 12px var(--mono); letter-spacing: .14em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+.panel { border: 1px solid var(--line); background: var(--bed); padding: 14px 16px; break-inside: avoid; }
+.panel h2 { margin: 0 0 10px; font: 700 22px/1 var(--head); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font: 600 10px var(--mono); letter-spacing: .16em; color: var(--muted); padding: 4px 6px 6px 0;
+     border-bottom: 1px solid var(--edge); }
+td { padding: 5px 6px 5px 0; border-bottom: 1px dashed var(--line); vertical-align: top; color: var(--label); }
+td:first-child { color: var(--fg); font-weight: 700; white-space: nowrap; }
+.wide { grid-column: 1 / -1; }
+.tip { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
+@media print {
+  @page { size: A4 landscape; margin: 9mm; }
+  :root { --bg: #fff; --fg: #000; --ink: #000; --label: #222; --dim: #444; --muted: #555; --line: #ccc; --edge: #999; --bed: #fff; }
+  .top, .noprint { display: none; }
+  body { font-size: 10px; }
+  .sheet { padding: 0; }
+  .sheet h1 { font-size: 40px; }
+  .gl > i { display: none; }
+  .grid { gap: 8px; grid-template-columns: repeat(3, 1fr); }
+  .panel { padding: 6px 8px; }
+  .panel h2 { font-size: 15px; margin-bottom: 4px; }
+  table { font-size: 9px; }
+  td, th { padding: 2px 4px 2px 0; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <img src="polarpatch-logo.png" alt="PolarPatch">
+    <span class="nm">FM-1 AGAIN</span>
+    <nav aria-label="The site"><a href="./">PLAY</a><a href="editor/">EDITOR</a><a href="manual/">MANUAL</a><a href="install/">INSTALL</a>
+      <a href="#" onclick="print(); return false">PRINT</a></nav>
+  </div>
+</header>
+<main class="wrap sheet">
+  <h1><span class="gl" data-t="CHEAT SHEET">CHEAT SHEET</span></h1>
+  <p class="sub">FM-1 AGAIN v{{VERSION}} · EVERY PAGE, BUTTON AND TRICK · PRINTS ON ONE A4</p>
+  <div class="grid">
+    <section class="panel wide">
+      <h2>PAGES</h2>
+      <table>
+        <tr><th>PAGE (BUTTON)</th><th>PRESET</th><th>K1</th><th>K2</th><th>K3</th><th>K4</th></tr>
+        <tr><td>HOME (HOME)</td><td>groove</td><td>PUMP depth</td><td>SPACE</td><td>FILTER: ← low-pass, → high-pass</td><td>TEMPO</td></tr>
+        <tr><td>GROOVE (SEQ)</td><td>groove</td><td>SWING</td><td>VARY</td><td>KICK</td><td>HATS</td></tr>
+        <tr><td>RISE (SEQ ×2)</td><td>AUTO</td><td>LENGTH</td><td>BRIGHT</td><td>SUCK</td><td>AUTO: OFF, DROP, 8 / 4 BARS</td></tr>
+        <tr><td>BUILD (SEQ ×3)</td><td>STYLE</td><td>BUILD: 2, 4, 8 bars</td><td>STYLE: SNARE, KICK, STUTTER, MIX</td><td>RUSH: + BPM at the drop</td><td>PLAY: LOOP, SONG</td></tr>
+        <tr><td>KEYS (EDIT)</td><td>ONE KEY chord</td><td>TONE</td><td>DECAY</td><td>CHORDS</td><td>PLAYS: HOLD, STABS, PULSE</td></tr>
+        <tr><td>VOX (ENV)</td><td>VOWELS</td><td>VOWELS</td><td>GATE</td><td>SHIFT</td><td>BREATH</td></tr>
+        <tr><td>CHOP (ENV ×2)</td><td>REVERSE (slice in hand)</td><td>SLICE</td><td>LENGTH</td><td>PITCH</td><td>MODE: SLICES, PITCHED</td></tr>
+        <tr><td>PUMP (LFO)</td><td>SOURCE</td><td>DEPTH</td><td>TIME</td><td>SHAPE</td><td>SOURCE: KICK, BEAT, OFF</td></tr>
+        <tr><td>SPACE (FX)</td><td>SIZE</td><td>SIZE</td><td>DAMP</td><td>SPACE</td><td>SHINE</td></tr>
+        <tr><td>ECHO (FX ×2)</td><td>MODE: TAPE, PING-PONG, REVERSE</td><td>TIME</td><td>AGAIN</td><td>WEAR</td><td>ECHO</td></tr>
+        <tr><td>SETUP (GLO)</td><td>SAVER: ON, OFF</td><td>KEY</td><td>BLACK: PADS, NOTES</td><td>KEYS level</td><td>VOICE level</td></tr>
+        <tr><td>TAPE (GLO ×2)</td><td>CLEAN … MEMORY</td><td>WOW</td><td>WARMTH</td><td>DULL</td><td>HISS</td></tr>
+        <tr><td>MIX (GLO ×3)</td><td>PLAY</td><td>KICK</td><td>HATS</td><td>CLAP</td><td>RISE</td></tr>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>BUTTONS · KNOBS</h2>
+      <table>
+        <tr><td>PLAY</td><td>groove on / off</td></tr>
+        <tr><td>ARP</td><td>BUILD at the next bar; again: DROP at the next bar</td></tr>
+        <tr><td>same page button</td><td>its next page</td></tr>
+        <tr><td>SELECT</td><td>pages in turn</td></tr>
+        <tr><td>ALGORITHM</td><td>keys play KEYS · VOX · CHOP · RISE · DRUMS</td></tr>
+        <tr><td>SEL tapped</td><td>says what the keys play</td></tr>
+        <tr><td>OCT− OCT+</td><td>octave −2 … +2</td></tr>
+        <tr><td>SAVE</td><td>keeps everything (lit: changed)</td></tr>
+        <tr><td>REC</td><td>find a Bluetooth MIDI device · held 1 s: Bluetooth on / off</td></tr>
+        <tr><td>MASTER</td><td>volume</td></tr>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>BLACK KEYS: PADS</h2>
+      <table>
+        <tr><th>KEY</th><th>HELD</th></tr>
+        <tr><td>F♯3 · G♯3 · A♯3</td><td>ROLL 1/8 · 1/16 · 1/32</td></tr>
+        <tr><td>C♯4</td><td>REVERSE: the last beat backwards</td></tr>
+        <tr><td>D♯4</td><td>TAPE STOP</td></tr>
+        <tr><td>F♯4</td><td>GATE: sixteenths</td></tr>
+        <tr><td>G♯4</td><td>FILTER: a low sweep</td></tr>
+        <tr><td>A♯4</td><td>ECHO THROW</td></tr>
+        <tr><td>C♯5</td><td>SPACE THROW</td></tr>
+        <tr><td>D♯5 · F♯5</td><td>KICK OUT · DRUMS OUT</td></tr>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>SEL + WHITE KEY</h2>
+      <table>
+        <tr><td>F3 · G3 · A3</td><td>STUTTER 1/16 · 1/8 · 1/4</td></tr>
+        <tr><td>B3 · C4</td><td>REVERSE · TAPE STOP</td></tr>
+        <tr><td>D4 · E4</td><td>LOW SWEEP · HIGH SWEEP</td></tr>
+        <tr><td>F4 · G4</td><td>ECHO THROW · SPACE THROW</td></tr>
+        <tr><td>A4 · B4</td><td>KICK OUT · DRUMS OUT</td></tr>
+        <tr><td>C5 · D5</td><td>STUTTER 1/32 · GATE</td></tr>
+      </table>
+      <p class="tip">Several at once. Let go and it's gone.</p>
+    </section>
+    <section class="panel">
+      <h2>GROOVES · CHORDS</h2>
+      <table>
+        <tr><td>GROOVES</td><td>HOUSE · 2-STEP · GARAGE 4X4 · SHUFFLE · HALFTIME · BROKEN · MINIMAL · KICK ONLY</td></tr>
+        <tr><td>CHORDS</td><td>OFF · LONGING · NIGHT BUS · HOPE · FLOAT · FOG (in KEY)</td></tr>
+        <tr><td>SONG</td><td>Intro 8 · Groove 8 · Build 4 · Drop 16 · Break 8 · Build 4 · Drop 16 · Outro 8</td></tr>
+        <tr><td>TAPES</td><td>CLEAN · WARM · CASSETTE · WORN · MEMORY</td></tr>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>CHOP</h2>
+      <table>
+        <tr><td>SLICES</td><td>each key its slice</td></tr>
+        <tr><td>PITCHED</td><td>SLICE across the keys, middle C as recorded</td></tr>
+        <tr><td>REVERSE</td><td>play a slice, turn PRESET: it runs backwards ("&lt;" on the panel)</td></tr>
+        <tr><td>Your own</td><td>up to 8 s: the editor, or <code>again_chop.py voice.wav --send</code></td></tr>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>THE SCREEN</h2>
+      <table>
+        <tr><td>Header</td><td>page · bar and beat · "Drop in 3" · "Drop!"</td></tr>
+        <tr><td>Waveform</td><td>the last 16 bars, left over right, beats ticked</td></tr>
+        <tr><td>Strip</td><td>the pads, lit while held</td></tr>
+        <tr><td>Bottom</td><td>K1–K4, the one turned lit</td></tr>
+        <tr><td>A minute idle</td><td>the screensaver; the first touch only wakes it</td></tr>
+      </table>
+    </section>
+  </div>
+</main>
+<script type="module" src="glitch.js"></script>
+</body>
+</html>

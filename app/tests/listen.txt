@@ -1,0 +1,46 @@
+# A listening demo (about 40 s): base/tools/build.py app --host, then
+#   app/build/host/again_host app/tests/listen.txt app/build/listen
+master 4096
+wait 600
+wav again-demo.wav
+tap PLAY
+wait 7700
+turn ALGO 2
+key 14 down 100
+wait 240
+key 14 up
+wait 240
+key 16 down 90
+wait 240
+key 16 up
+wait 480
+key 19 down 110
+wait 480
+key 19 up
+wait 1200
+key 14 down 100
+wait 240
+key 14 up
+key 16 down 90
+wait 240
+key 16 up
+wait 1200
+tap ARP
+wait 15500
+turn ALGO -1
+key 4 down 110
+wait 1800
+key 4 up
+wait 1900
+key 7 down 100
+wait 1800
+key 7 up
+wait 6000
+tap HOME
+turn K3 -30
+wait 4000
+turn K3 30
+wait 3000
+tap PLAY
+wait 3500
+wavstop

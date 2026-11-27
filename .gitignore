@@ -1,1 +1,9 @@
-app/
+app/build/
+.DS_Store
+midi_out.txt
+
+# the demo video's tools: internal (the user, 2026-11-25)
+app/tools/make_demo_video.py
+app/tools/demo60.py
+app/tests/demo60.txt
+app/tools/make_link_video.py

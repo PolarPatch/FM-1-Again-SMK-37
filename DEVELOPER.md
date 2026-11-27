@@ -11,11 +11,23 @@
   VOICE, DRUMS, SPACE levels, taking over once moved; wheels: pitch and FILTER; the outer keys below and above), the
   control layout of Arctic Scream SMK-37 (PolarPatch), its browser panel (web/smk_panel.js) for a demo.
 
-## Tried 2026-11-25: FM-1 Again on the branch
+## The port, 2026-11-27
 
-FM-1 Again's app (synced into app/, board = "smk37") does not build on `smk37-inhouse`: the branch (2026-11-06) is
-older than fm1-base main's companion files and parameters (plat_file_t, plat_file_info_t, plat_param_t,
-PLAT_FILE_HEAD, PLAT_FK_* / PLAT_FF_*), which FM-1 Again uses for CHOP's sample, the editor and backup. So the port
-waits for the SMK-37 board to come to fm1-base main (or the branch to be brought up to it): Charles Vestal's. A
-backport here would fork fm1-base. Locally, the branch's gen_font also needs Homebrew's FriBiDi on the path (main's
-build.py sets DYLD_FALLBACK_LIBRARY_PATH; the branch's does not).
+- `base/` is fm1-base's `smk37-inhouse` at 1842e0b (it merged main 8820d6f on 2026-11-25, so the companion files and
+  parameters are there now, and the own Wi-Fi stack and Ableton Link). FM-1 Again's `app/` is synced from the FM-1 repo
+  (1.0.7: Link, NETMIDI / RTP-MIDI, Bluetooth MIDI) and committed here; the SMK's differences are `#if PLAT_SMK37`:
+  - `app.h` APP_STORE_MAP: the settings at PLAT_GLOB 0xEB000, the panel / Bluetooth / Wi-Fi pairs at 0xE4000, 0xE6000,
+    0xE2000 (the data area's top).
+  - `app.c` CH_FILE: CHOP's sample at the data area's foot, 0xC2000 .. 0xD8FFF (92 KiB, as the FM-1's XDATA1).
+  - `saver.h`: no film (no resource region on the SMK-37: the build refuses `resources` there), `fm1.toml`
+    `resources` commented out; `tests/saver.txt` fails here for that reason.
+  - `fm1.toml` board = "smk37", model = "pro".
+- The SMK's flash, never written by this app: 0x0..0x3FFF, 0xC0000..0xC1FFF (calibration), 0xF4000..0xFDFFF,
+  0xFF000 on; PLAT_OWNER 0xAF000 is refused by the platform.
+- The boot raises VDC14 / SYSVDD and runs fm1_power_stock / fm1_clock_stock (main_fm1.c, both boards): the
+  Wi-Fi + Bluetooth crash Arctic Scream SMK-37 had without them.
+- Build: `/usr/bin/python3 base/tools/build.py app` -> `app/build/again-smk37.fwsc`; host:
+  `--host` -> `app/build/host/again-smk37_host`. Before a flash: a full backup
+  (`sudo -n /usr/local/smk37-backup/smk37-read backup`).
+- Next: the pads (PERFORM's tricks, CHOP's slices), faders (KEYS / VOICE / DRUMS / SPACE), wheels (pitch, FILTER),
+  the outer keys; packages for elite and mke; an `smk37` block for the hub.

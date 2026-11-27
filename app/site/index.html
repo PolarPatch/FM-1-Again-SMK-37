@@ -1,0 +1,290 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later
+     Copyright (C) 2026 PolarPatch
+     FM-1 Again's front page: the firmware in the browser (fm1-base's emulator, emu/, the same code the FM-1 runs) with
+     its demos, and a tour of it in numbered sections. The layout follows Arctic Scream p0larpatch's page. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FM-1 Again</title>
+<link rel="icon" href="polarpatch-logo.png">
+<meta name="description" content="FM-1 Again by PolarPatch: warm, chopped, pumping electronic music on the M-VAVE FM-1. Play it in your browser: the same code the instrument runs.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <img src="polarpatch-logo.png" alt="PolarPatch">
+    <span class="nm">FM-1 AGAIN</span>
+    <nav aria-label="On this page and beyond">
+      <a href="#play">PLAY</a><a href="#controls">CONTROLS</a><a href="#sounds">SOUNDS</a><a href="#groove">GROOVE</a>
+      <a href="#perform">PERFORM</a><a href="#mix">MIX</a><a href="#status">STATUS</a>
+      <a href="editor/">EDITOR</a><a href="cheatsheet.html">CHEAT SHEET</a><a href="install/">INSTALL</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">GROOVEBOX FIRMWARE FOR THE M-VAVE FM-1 · v{{VERSION}}</div>
+    <div class="head">
+      <h1 aria-label="FM-1 Again"><span class="gl" data-t="FM-1">FM-1</span><span class="gl" data-t="AGAIN">AGAIN</span></h1>
+      <p>Warm, emotional, rhythmic electronic music, made again on the FM-1. Press PLAY and a garage groove starts with
+        chords pumping over it. Play soft electric piano, sung syllables or a chopped recording on the keys, hold a black
+        key for a stutter, then press ARP and let the drop fall. Play it here: the panel below runs the same code as the
+        instrument.</p>
+    </div>
+    <div class="bars" aria-hidden="true" id="bars"></div>
+    <div class="cta">
+      <button class="main" type="button" id="hero-go">SWITCH ON</button>
+      <a href="install/">INSTALL</a>
+      <a href="https://github.com/PolarPatch/FM-1-Again/releases">DOWNLOAD</a>
+      <a href="editor/">EDITOR</a>
+      <a href="cheatsheet.html">CHEAT SHEET</a>
+      <a href="manual/">MANUAL</a>
+      <a href="https://youtu.be/FJ0DTtbBlUM">DEMO VIDEO</a>
+      <a href="https://youtu.be/3ZhdAc3bb7Q">LINK + MIDI VIDEO</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap player" id="play">
+  <div>
+    <iframe class="emu" id="emu" src="emu/index.html" title="FM-1 Again in the browser: the FM-1's panel" allow="midi; autoplay"></iframe>
+  </div>
+  <aside class="side" aria-label="Demos">
+    <div class="box read">
+      <div class="wide"><small>DEMO</small><output id="r-demo">—</output></div>
+      <div><small>GROOVE</small><output id="r-groove">—</output></div>
+      <div><small>PLAYING</small><output id="r-play">STOP</output></div>
+    </div>
+    <div class="box">
+      <div class="demos" id="demos"></div>
+      <div class="row"><button type="button" id="d-stop">STOP</button><button type="button" id="d-off">LET GO</button></div>
+      <p class="hint">A demo turns the knobs and presses the buttons for you, then plays. After it, the panel is yours:
+        turn K1 on HOME for the pump, K3 for the filter, press ARP for a build.</p>
+    </div>
+  </aside>
+</div>
+
+<section class="sec" id="controls">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" aria-hidden="true">01</div>
+      <h2><span class="gl" data-t="CONTROLS">CONTROLS</span></h2>
+      <p>Click the panel, or use the computer's keyboard. Drag or scroll a knob to turn it; Shift-click or right-click a
+        key or a button to hold it down.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h3>KEYS</h3>
+        <dl>
+          <dt><kbd>Q</kbd>–<kbd>I</kbd> <kbd>A</kbd>–<kbd>K</kbd></dt><dd>The white keys, F3 up. They play what ALGORITHM chose: KEYS, VOX, CHOP, RISE or DRUMS.</dd>
+          <dt><kbd>1</kbd>–<kbd>0</kbd> <kbd>-</kbd></dt><dd>The black keys: eleven pads, a trick each while held (SETUP › BLACK: NOTES makes them notes).</dd>
+          <dt>hold SEL + a white key</dt><dd>Any of the thirteen tricks, several at once.</dd>
+          <dt><kbd>Z</kbd> <kbd>X</kbd> OCT− OCT+</dt><dd>The octave, −2 to +2.</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>BUTTONS</h3>
+        <dl>
+          <dt><kbd>P</kbd> PLAY</dt><dd>Starts and stops the groove.</dd>
+          <dt>ARP</dt><dd>BUILD at the next bar, then DROP. Again during the build: the drop at the next bar.</dd>
+          <dt><kbd>Esc</kbd> HOME · SEQ · EDIT · ENV · LFO · FX · GLO</dt><dd>The pages. The same button again: its next page (SEQ: GROOVE, RISE, BUILD; ENV: VOX, CHOP; FX: SPACE, ECHO; GLO: SETUP, TAPE, MIX).</dd>
+          <dt>SAVE</dt><dd>Keeps every value, lit when something changed.</dd>
+          <dt><kbd>O</kbd> REC</dt><dd>Looks for a Bluetooth MIDI device. Held a second: Bluetooth on or off.</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>KNOBS</h3>
+        <dl>
+          <dt>K1–K4</dt><dd>The four values along the bottom of the screen, on every page. The one turned is lit.</dd>
+          <dt>PRESET</dt><dd>The page's main choice, in the header's second line: the groove on HOME.</dd>
+          <dt>ALGORITHM</dt><dd>What the keys play.</dd>
+          <dt><kbd>↑</kbd> <kbd>↓</kbd> SELECT</dt><dd>Steps through the pages.</dd>
+          <dt>MASTER</dt><dd>The volume.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="sounds">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" aria-hidden="true">02</div>
+      <h2><span class="gl" data-t="SOUNDS">SOUNDS</span></h2>
+      <p>Five things the keys can play, all made in the firmware: no instrument's patches, no artist's recordings.
+        Turn ALGORITHM to choose.</p>
+    </div>
+    <div class="cards">
+      <article class="card star">
+        <svg viewBox="0 0 74 34" aria-hidden="true"><path d="M2 17 C8 17 8 6 14 6 S20 28 26 28 32 10 38 10 44 24 50 24 56 13 62 13 68 20 72 17"/></svg>
+        <h3>KEYS</h3><div class="tags"><span>EDIT</span><span>ONE KEY, A CHORD</span></div>
+        <p>A soft FM electric piano of its own: a bark that softens as the note rings, a short tine at the start, and a
+          tremolo that pans. One key plays a whole minor-ninth chord; the groove's chords play it by themselves.</p>
+        <div class="k">TONE · DECAY · CHORDS · PLAYS</div></article>
+      <article class="card">
+        <svg viewBox="0 0 74 34" aria-hidden="true"><path d="M2 17 C6 9 10 25 14 17 S22 7 26 17 34 27 38 17 46 5 50 17 58 29 62 17 70 9 72 17"/></svg>
+        <h3>VOX</h3><div class="tags"><span>ENV</span><span>SUNG SYLLABLES</span></div>
+        <p>A short syllable on each key, gliding from one vowel to the next, scooped up into its pitch. A run over the
+          keys sounds like a voice cut into pieces.</p>
+        <div class="k">VOWELS · GATE · SHIFT · BREATH</div></article>
+      <article class="card">
+        <svg viewBox="0 0 74 34" aria-hidden="true"><path d="M2 17 L8 17 L9 5 L11 29 L13 9 L15 25 L17 17 L28 17 L29 7 L31 27 L33 12 L35 22 L37 17 L48 17 L49 4 L51 30 L53 10 L55 24 L57 17 L72 17"/></svg>
+        <h3>CHOP</h3><div class="tags"><span>ENV TWICE</span><span>YOUR SAMPLE</span></div>
+        <p>A recording up to 8 s cut into slices over the keys, or one slice in pitch. Turn PRESET and the slice you just
+          played runs backwards: a swell into its attack. Send your own from the <a href="editor/">editor</a>.</p>
+        <div class="k">REVERSE · SLICE · LENGTH · PITCH · MODE</div></article>
+      <article class="card">
+        <svg viewBox="0 0 74 34" aria-hidden="true"><path d="M2 30 C20 30 30 28 40 22 S54 8 60 4 L60 30 L72 30"/></svg>
+        <h3>RISE</h3><div class="tags"><span>SEQ TWICE</span><span>A REVERSED STAB</span></div>
+        <p>Made forwards: its pitch climbs, it swells with a suck of noise, and it stops dead, exactly on a beat. On AUTO
+          the groove fires one into every drop.</p>
+        <div class="k">LENGTH · BRIGHT · SUCK · AUTO</div></article>
+      <article class="card">
+        <svg viewBox="0 0 74 34" aria-hidden="true"><path d="M2 17 L6 17 L7 3 L9 31 L11 17 L20 17 L21 12 L22 22 L23 17 L38 17 L39 3 L41 31 L43 17 L52 17 L53 12 L54 22 L55 17 L72 17"/></svg>
+        <h3>DRUMS</h3><div class="tags"><span>ALGORITHM</span><span>ALL SYNTHESIZED</span></div>
+        <p>A kick, a clap, a ghost snare, closed and open hats, a shaker and a rim, on the keys too.</p>
+        <div class="k">KICK · HATS · CLAP (MIX)</div></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="groove">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" aria-hidden="true">03</div>
+      <h2><span class="gl" data-t="GROOVE">GROOVE</span></h2>
+      <p>Eight grooves with their own swing, four chord progressions in any key, builds that drop on the bar, and a
+        song mode that plays a whole track by itself.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><h3>GROOVES</h3><div class="tags"><span>PRESET</span><span>8 OF THEM</span></div>
+        <p>Some hits come only half the time or every other bar, so a groove never repeats quite the same. VARY leaves
+          hits out and adds ghosts.</p><div class="k">SWING · VARY · KICK · HATS</div></article>
+      <article class="card"><h3>CHORDS</h3><div class="tags"><span>EDIT</span><span>IN YOUR KEY</span></div>
+        <p>LONGING, NIGHT BUS, HOPE, FLOAT and FOG: four chords of two bars each, in the KEY you set. OFF leaves the keys to you.</p></article>
+      <article class="card"><h3>BUILD · DROP</h3><div class="tags"><span>ARP</span><span>2, 4 OR 8 BARS</span></div>
+        <p>The snares roll faster, the sound thins out, a riser climbs; then it drops. Four styles (SNARE, KICK,
+          STUTTER, MIX), and RUSH lifts the tempo into the drop.</p><div class="k">BUILD · STYLE · RUSH · PLAY</div></article>
+      <article class="card"><h3>SONG</h3><div class="tags"><span>SEQ ×3</span><span>72 BARS</span></div>
+        <p>Intro, groove, build, drop, break, build, drop, outro, round and round. HOME names the section and its bar.</p></article>
+    </div>
+    <div class="tools-title">THE GROOVES (PRESET ON HOME)</div>
+    <div class="tools">
+      <div><b>HOUSE</b><span>four on the floor</span></div><div><b>2-STEP</b><span>the garage skip</span></div>
+      <div><b>GARAGE 4X4</b><span>shuffled hats</span></div><div><b>SHUFFLE</b><span>a rolling swing</span></div>
+      <div><b>HALFTIME</b><span>slow and heavy</span></div><div><b>BROKEN</b><span>off the grid</span></div>
+      <div><b>MINIMAL</b><span>kick and a little</span></div><div><b>KICK ONLY</b><span>the bones</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="perform">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" aria-hidden="true">04</div>
+      <h2><span class="gl" data-t="PERFORM">PERFORM</span></h2>
+      <p>Tricks for playing it live: hold a black key and its trick plays while you hold it, the strip above the knobs
+        lit. Or hold SEL and a white key, for any of them.</p>
+    </div>
+    <div class="tools-title">THE BLACK KEYS, F♯3 UP</div>
+    <div class="tools">
+      <div><b>R8</b><span>roll 1/8</span></div><div><b>R16</b><span>roll 1/16</span></div><div><b>R32</b><span>roll 1/32</span></div>
+      <div><b>REV</b><span>the last beat backwards</span></div><div><b>STP</b><span>tape stop</span></div>
+      <div><b>GAT</b><span>cut to sixteenths</span></div><div><b>FLT</b><span>a low-pass closes</span></div>
+      <div><b>ECH</b><span>echo throw</span></div><div><b>SPC</b><span>space throw</span></div>
+      <div><b>KIL</b><span>kick out</span></div><div><b>DRM</b><span>drums out</span></div>
+    </div>
+    <div class="tools-title">HOLD SEL + A WHITE KEY</div>
+    <div class="tools">
+      <div><b>F3</b><span>STUTTER 1/16</span></div><div><b>G3</b><span>STUTTER 1/8</span></div><div><b>A3</b><span>STUTTER 1/4</span></div>
+      <div><b>B3</b><span>REVERSE</span></div><div><b>C4</b><span>TAPE STOP</span></div><div><b>D4</b><span>LOW SWEEP</span></div>
+      <div><b>E4</b><span>HIGH SWEEP</span></div><div><b>F4</b><span>ECHO THROW</span></div><div><b>G4</b><span>SPACE THROW</span></div>
+      <div><b>A4</b><span>KICK OUT</span></div><div><b>B4</b><span>DRUMS OUT</span></div><div><b>C5</b><span>STUTTER 1/32</span></div>
+      <div><b>D5</b><span>GATE</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="mix">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" aria-hidden="true">05</div>
+      <h2><span class="gl" data-t="MIX">MIX</span></h2>
+      <p>The pump that makes it breathe, and three effects from Arctic Scream: a long room, a tape echo and a worn tape
+        over everything.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><h3>PUMP</h3><div class="tags"><span>LFO</span><span>SIDECHAIN</span></div>
+        <p>Everything but the kick and the hats ducks under each kick, or each beat, and swells back up.</p>
+        <div class="k">DEPTH · TIME · SHAPE · SOURCE</div></article>
+      <article class="card"><h3>SPACE</h3><div class="tags"><span>FX</span><span>FROM FELUCCA</span></div>
+        <p>A long, smooth reverb, with a shimmer above it.</p><div class="k">SIZE · DAMP · SPACE · SHINE</div></article>
+      <article class="card"><h3>ECHO</h3><div class="tags"><span>FX TWICE</span><span>TAPE · PING-PONG · REVERSE</span></div>
+        <p>A tape echo in steps of the tempo. REVERSE plays what you just played backwards, one TIME later.</p>
+        <div class="k">TIME · AGAIN · WEAR · ECHO</div></article>
+      <article class="card"><h3>TAPE</h3><div class="tags"><span>GLO TWICE</span><span>5 TAPES</span></div>
+        <p>CLEAN, WARM, CASSETTE, WORN, MEMORY: wow, warmth, a duller top and hiss.</p>
+        <div class="k">WOW · WARMTH · DULL · HISS</div></article>
+      <article class="card"><h3>SCREENSAVER</h3><div class="tags"><span>SETUP</span><span>AFTER A MINUTE</span></div>
+        <p>Leave it a minute and a crowd at a concert dances over the screen, dithered black and white, while the music
+          plays on. The first touch only wakes it.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="status">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" aria-hidden="true">06</div>
+      <h2><span class="gl" data-t="STATUS">STATUS</span></h2>
+      <p>Version {{VERSION}}. Free and open source, GPL-3.0. Unofficial firmware, not made or endorsed by M-VAVE:
+        install at your own risk.</p>
+    </div>
+    <div class="status">
+      <article class="card"><h3>INSTALL</h3>
+        <p>In Chrome or Edge, the FM-1 on USB: <a href="install/">the installer</a>. It can also put M-VAVE's own
+          firmware back. Or from a terminal, with the package from the
+          <a href="https://github.com/PolarPatch/FM-1-Again/releases">releases</a>:</p>
+        <pre>pip install mido python-rtmidi
+python3 fm1_install.py again-{{VERSION}}.fwsc</pre>
+        <p style="margin-top: 10px">Stuck? The Rescue page on the <a href="https://thefirmwarehub.com/">FM-1 Firmware Hub</a> brings it back.</p></article>
+      <article class="card"><h3>LEARN IT</h3>
+        <p><a href="cheatsheet.html">The cheat sheet</a> · <a href="manual/">the manual</a> ·
+          <a href="https://github.com/PolarPatch/FM-1-Again/blob/main/app/docs/MANUAL.md">the manual on GitHub</a></p>
+        <p style="margin-top: 10px"><a href="editor/">The editor</a>: every value live over USB in Chrome or Edge, and
+          your own recording into CHOP: record or drop a WAV, cut it, send it.
+          <a href="backup/">Backup</a> keeps your settings.</p></article>
+      <article class="card"><h3>SOURCE</h3>
+        <p><a href="https://github.com/PolarPatch/FM-1-Again">github.com/PolarPatch/FM-1-Again</a>. Bugs and questions:
+          open an issue.</p>
+        <p style="margin-top: 10px">Free, and always will be. <a href="https://buymeacoffee.com/p0larpatch">Buy PolarPatch a coffee</a>.</p></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="big">FM-1 AGAIN</div>
+    <p>FM-1 Again by PolarPatch, a sister to <a href="https://polarpatch.github.io/Arctic-scream-FM-1/">Arctic Scream p0larpatch</a> ·
+      built on <a href="https://github.com/charlesvestal/fm1-base">fm1-base</a> (Charles Vestal, MPL-2.0) and felucca-bsp,
+      from <a href="https://github.com/hugelton/Felucca">Felucca</a> by Leo Kuroshita, Hügelton Instruments · SPACE, ECHO
+      and TAPE from Arctic Scream, which took them from Felucca and <a href="https://github.com/GRiMMBIENT/grimm">GR!MM</a> (GPL-3.0) ·
+      the pads, tabs, SONG and builds after ideas of <a href="https://github.com/FLEXOR-R/loaf-breaker">loaf-breaker</a> by FLEXOR, written anew</p>
+    <p>The look follows the posters of the USB002 tour, and the screensaver's film is footage from it, both from the
+      creative files its team shared with the community; they are not under the GPL. FM-1 Again is not made, endorsed
+      or approved by any artist. Type: TeX Gyre Heros (GUST e-foundry, <a href="GUST-FONT-LICENSE.txt">GUST Font License</a>).
+      The PolarPatch logo is PolarPatch's own, not under the GPL.</p>
+    <p><a href="LICENSE">GPL-3.0</a> · <a href="https://github.com/PolarPatch/FM-1-Again">source</a> ·
+      <a href="https://github.com/PolarPatch/FM-1-Again/blob/main/LICENSING.md">credits and licences</a></p>
+    <p>M-VAVE and FM-1 are trademarks of their respective owners. FM-1 Again is not affiliated with or endorsed by them.</p>
+  </div>
+</footer>
+<script type="module" src="site.js"></script>
+</body>
+</html>

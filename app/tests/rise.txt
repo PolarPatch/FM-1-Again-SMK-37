@@ -1,0 +1,46 @@
+# RISE (the keys, and by itself before the drop) and ECHO's REVERSE: base/tools/build.py app --host, then
+#   app/build/host/again_host app/tests/rise.txt app/build/rise
+master 4096
+wait 600
+tap SEQ
+tap SEQ
+wait 30
+expect page 2
+shot rise-page.png
+turn ALGO 3
+wait 30
+expect inst 3
+wav rise-keys.wav
+key 4 down 110
+wait 100
+key 4 up
+wait 900
+key 9 down 110
+wait 100
+key 9 up
+wait 900
+wavstop
+wav rise-drop.wav
+tap PLAY
+wait 2000
+tap ARP
+wait 9500
+expect drops 1
+wait 1500
+wavstop
+tap PLAY
+# ECHO's REVERSE on the keys
+turn ALGO -3
+tap FX
+tap FX
+turn PRESET 1
+turn K4 40
+wait 30
+expect p36 2
+wav reverse-echo.wav
+key 9 down 110
+wait 150
+key 9 up
+wait 2500
+wavstop
+shot echo-reverse.png

@@ -1,0 +1,14 @@
+# CHANNEL (GLO › MIDI): 2 takes channel 2 only
+wait 600
+tap GLO
+tap GLO
+tap GLO
+tap GLO
+turn K4 2
+wait 50
+midi 90 3C 64
+wait 100
+expect kp_voices 0
+midi 91 3C 64
+wait 100
+expect kp_voices 5

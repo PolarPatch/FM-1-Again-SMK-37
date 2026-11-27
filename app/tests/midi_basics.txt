@@ -1,0 +1,22 @@
+# The MIDI basics: the sustain pedal holds the offs until it lets go; CC 123 lets every voice go; pitch bend and the
+# mod wheel taken (KEYS: a one-key chord, MIN9, five voices)
+wait 600
+midi B0 40 7F
+midi 90 3C 64
+wait 50
+midi 80 3C 00
+wait 1500
+expect kp_voices 5
+midi B0 40 00
+wait 1500
+expect kp_voices 0
+midi 90 3C 64
+wait 50
+midi E0 7F 7F
+midi B0 01 7F
+wait 300
+midi B0 7B 00
+wait 1500
+expect kp_voices 0
+midi E0 00 40
+midi B0 01 00

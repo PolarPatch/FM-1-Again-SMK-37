@@ -1,0 +1,24 @@
+# the screensaver: a minute untouched, the film; the first touch only wakes the screen
+wait 600
+expect saver 0
+expect saver_bad 0
+wait 61000
+expect saver 1
+shot saver.png
+wait 2000
+shot saver2.png
+tap PLAY
+wait 50
+expect saver 0
+expect run 0
+wait 50
+shot woke.png
+tap PLAY
+wait 50
+expect run 1
+wait 61000
+expect saver 1
+tap PLAY
+wait 50
+expect saver 0
+expect run 1

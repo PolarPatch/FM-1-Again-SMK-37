@@ -1,0 +1,104 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later
+     Copyright (C) 2026 PolarPatch
+     FM-1 Again's editor: every value live over USB (the companion's parameters), and CHOP's sample made here (record
+     or open a sound, cut it into slices, hear them, send it as the companion's file "chop"). Chrome or Edge (Web MIDI
+     with SysEx). The sample's format and coder are app/tools/again_chop.py's, in JavaScript (editor.js). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FM-1 Again editor</title>
+<link rel="icon" href="../polarpatch-logo.png">
+<meta name="description" content="FM-1 Again's editor: every value of the FM-1 live over USB, and your own recording cut into CHOP's slices and sent to it.">
+<link rel="stylesheet" href="../site.css">
+<style>
+.ed { padding: 28px 0 60px; }
+.ed h1 { margin: 0 0 8px; font-size: clamp(44px, 8vw, 96px); }
+.ed .lead { color: var(--label); max-width: 46em; margin: 0 0 22px; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 22px; }
+button, .file { font: 600 12px var(--mono); letter-spacing: .12em; padding: 9px 16px; cursor: pointer; background: transparent;
+                color: var(--label); border: 1px solid var(--edge); }
+button:hover, .file:hover { color: var(--fg); border-color: var(--fg); }
+button.main { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button:disabled { opacity: .4; cursor: default; }
+#state { font: 600 12px var(--mono); letter-spacing: .1em; color: var(--dim); }
+.panel { border: 1px solid var(--line); background: var(--bed); padding: 16px 18px; margin: 0 0 22px; }
+.panel h2 { margin: 0 0 4px; font: 700 30px/1 var(--head); }
+.panel > p { margin: 0 0 14px; color: var(--dim); }
+canvas#wave { width: 100%; height: 180px; display: block; background: #c0c0c0; cursor: crosshair; touch-action: none; }
+.slices { display: flex; flex-wrap: wrap; gap: 4px; margin: 10px 0; }
+.slices button { padding: 6px 10px; min-width: 42px; }
+.slices button.rev { border-style: dashed; }
+.row { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 10px 0 0; }
+.row label { font: 600 11px var(--mono); letter-spacing: .12em; color: var(--dim); display: inline-flex; gap: 8px; align-items: center; }
+input[type=text], select { font: 600 13px var(--mono); background: var(--part); color: var(--fg); border: 1px solid var(--edge); padding: 6px 8px; }
+input[type=number] { width: 4.5em; font: 600 13px var(--mono); background: var(--part); color: var(--fg); border: 1px solid var(--edge); padding: 6px; }
+.meter { height: 4px; background: #1a1a1a; margin: 10px 0 0; }
+.meter i { display: block; height: 100%; width: 0; background: var(--blue-hi); }
+.groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.group { border: 1px solid var(--line); padding: 12px 14px; background: var(--bg); }
+.group h3 { margin: 0 0 8px; font: 700 20px var(--head); }
+.prm { display: grid; grid-template-columns: 7.5em 1fr 5.5em; gap: 8px; align-items: center; margin: 6px 0; }
+.prm span { font: 600 11px var(--mono); letter-spacing: .1em; color: var(--dim); }
+.prm output { font: 600 12px var(--mono); color: var(--fg); text-align: right; }
+.prm select { width: 100%; }
+input[type=range] { width: 100%; accent-color: #fff; }
+.note { color: var(--muted); font-size: 13px; margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <img src="../polarpatch-logo.png" alt="PolarPatch">
+    <span class="nm">FM-1 AGAIN</span>
+    <nav aria-label="The site"><a href="../">PLAY</a><a href="../cheatsheet.html">CHEAT SHEET</a><a href="../manual/">MANUAL</a>
+      <a href="../install/">INSTALL</a><a href="../backup/">BACKUP</a></nav>
+  </div>
+</header>
+<main class="wrap ed">
+  <h1><span class="gl" data-t="EDITOR">EDITOR</span></h1>
+  <p class="lead">Plug in the FM-1 with FM-1 Again on it, then connect (Chrome or Edge: allow MIDI with SysEx). Every
+    value changes live, both ways. Below, make CHOP's sample: record or open a sound, cut it, hear the slices, send it.</p>
+  <div class="bar">
+    <button class="main" type="button" id="connect">CONNECT</button>
+    <span id="state" role="status">NOT CONNECTED</span>
+  </div>
+
+  <section class="panel" aria-labelledby="h-chop">
+    <h2 id="h-chop">CHOP SAMPLE</h2>
+    <p>Up to 8 seconds, mono, 22 kHz on the FM-1. Click the waveform to add a cut, drag a cut to move it, double-click a
+      cut to take it away. A slice button plays it; Shift-click plays it backwards, as REVERSE does.</p>
+    <div class="bar">
+      <button type="button" id="rec">● RECORD</button>
+      <label class="file">OPEN A SOUND<input type="file" id="open" accept="audio/*,.wav" hidden></label>
+      <button type="button" id="even">EVEN 16</button>
+      <button type="button" id="auto">FIND THE STARTS</button>
+      <button type="button" id="clear">ONE SLICE</button>
+    </div>
+    <canvas id="wave" width="1200" height="180" role="img" aria-label="The sample and its slices"></canvas>
+    <div class="slices" id="slices" aria-label="The slices"></div>
+    <div class="row">
+      <label>NAME <input type="text" id="name" maxlength="15" value="MY SAMPLE" spellcheck="false"></label>
+      <span id="len" class="note" style="margin:0"></span>
+    </div>
+    <div class="bar" style="margin-top:14px">
+      <button class="main" type="button" id="send" disabled>SEND TO THE FM-1</button>
+      <button type="button" id="save" disabled>SAVE .AGC</button>
+      <button type="button" id="factory" disabled>FACTORY PHRASE</button>
+    </div>
+    <div class="meter"><i id="meter"></i></div>
+    <p class="note">While it is sent, CHOP plays its factory phrase; the new sample takes over when it is all there.
+      From a terminal: <code>again_chop.py voice.wav --send</code>.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-prm">
+    <h2 id="h-prm">EVERY VALUE</h2>
+    <p>Live: turn a knob on the FM-1 and it moves here. SAVE on the FM-1 keeps them.</p>
+    <div class="groups" id="groups"><p class="note">Connect to see them.</p></div>
+  </section>
+</main>
+<script type="module" src="../glitch.js"></script>
+<script type="module" src="editor.js"></script>
+</body>
+</html>
