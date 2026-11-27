@@ -29,5 +29,10 @@
 - Build: `/usr/bin/python3 base/tools/build.py app` -> `app/build/again-smk37.fwsc`; host:
   `--host` -> `app/build/host/again-smk37_host`. Before a flash: a full backup
   (`sudo -n /usr/local/smk37-backup/smk37-read backup`).
+- On the user's SMK-37 Pro, 2026-11-27 (installed over USB-MIDI, port "Felucca"; the full backup of 10:18 that day
+  kept): it starts and plays; the notes reach Ableton Note on an iPhone over Bluetooth MIDI and over Wi-Fi alone
+  (NETMIDI ON, Wi-Fi AP, Note's Network Session 1, Bluetooth off in Note). NETMIDI is off by default: turn it on.
+- Two devices on one Mac: fm1_install.py's --port is a substring ("Felucca" matches "Felucca Update") and it waits for
+  any loader, so install one device at a time.
 - Next: the pads (PERFORM's tricks, CHOP's slices), faders (KEYS / VOICE / DRUMS / SPACE), wheels (pitch, FILTER),
   the outer keys; packages for elite and mke; an `smk37` block for the hub.
